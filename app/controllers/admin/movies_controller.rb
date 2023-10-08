@@ -17,6 +17,25 @@ class Admin::MoviesController < ApplicationController
     end
   end
 
+  def edit
+    @movie = Movie.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.find(params[:id])
+    if @movie.update(movie_params)
+      redirect_to admin_movies_path, notice: "映画の更新をしました"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to admin_movies_path, notice: "映画を削除しました。"
+  end
+
   private
 
   def movie_params

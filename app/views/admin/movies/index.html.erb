@@ -9,6 +9,7 @@
       <th>上映中</th>
       <th>登録日時</th>
       <th>更新日時</th>
+      <th>操作</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,10 @@
         <td><%= movie.is_showing ? '上映中' : '上映予定' %></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
+        <td>
+          <%= link_to movie.id, edit_admin_movie_path(movie) %>
+          <%= link_to '削除', admin_movie_path(movie), method: :delete, data: {confirm: '投稿を削除します。よろしいですか？'} %>
+        </td>
       </tr>
     <% end %>
   </tbody>

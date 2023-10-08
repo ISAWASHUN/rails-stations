@@ -1,0 +1,36 @@
+<% if @movie.errors.any? %>
+  <ul>
+    <% @movie.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [:admin, @movie], method: :patch do |f| %>
+  <div class="form-group">
+    <label>映画名</label>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>公開年</label>
+    <%= f.number_field :year, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>説明</label>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>画像URL</label>
+    <%= f.text_field :image_url, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>上映状態</label>
+    <%= f.select :is_showing, [['上映中', true], ['上映予定', false]], {}, class: 'form-control' %>
+  </div>
+
+  <%= f.submit '更新', class: 'btn btn-primary' %>
+<% end %>

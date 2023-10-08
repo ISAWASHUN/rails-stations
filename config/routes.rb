@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :movies, only: [:index]
 
   namespace :admin do
-    resources :movies, only: [:index, :new, :create]
+    resources :movies
   end
 end
