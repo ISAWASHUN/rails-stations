@@ -1,0 +1,17 @@
+<!-- app/views/sheets/index.html.erb -->
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Row</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sheets.each do |sheet| %>
+      <tr>
+        <td><%= sheet.column %></td>
+        <td><%= sheet.row %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
