@@ -1,0 +1,40 @@
+<h1><%= @movie.name %></h1>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie.year %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <img src="<%= @movie.image_url %>" alt="<%= @movie.name %>" width="200">
+</p>
+
+<h2>Upcoming Schedules:</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.start_time.strftime('%H:%M') %></td>
+        <td><%= schedule.end_time.strftime('%H:%M') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with url: reservation_movie_path(@movie), method: :get do |f| %>
+  <%= f.select :date, @dates %>
+  <%= f.select :schedule_id, @schedules.map { |s| [s.start_time, s.id] } %>
+  <button type="submit" name="commit" value="座席を予約する" data-disable-with="座席を予約する">座席を予約する</button>
+<% end %>

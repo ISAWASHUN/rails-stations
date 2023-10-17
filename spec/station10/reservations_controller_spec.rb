@@ -59,7 +59,7 @@ RSpec.describe ReservationsController, type: :controller do
       # 同じ日付の同じ映画の座席を予約してみる
       create(:reservation, { sheet_id: sheets.first.id, schedule_id: schedule.id, date: date })
       success_request
-      # NOTE: movie_reservation_pathとして指定したいが、実装の揺れに対応するために文字列で指定している
+      # NOTE: reservation_movie_pathとして指定したいが、実装の揺れに対応するために文字列で指定している
       expect(response).to redirect_to("http://test.host/movies/#{movie.id}/reservation?schedule_id=#{schedule.id}&date=#{date}").or redirect_to("http://test.host/movies/#{movie.id}/reservation?date=#{date}&schedule_id=#{schedule.id}")
     end
   end

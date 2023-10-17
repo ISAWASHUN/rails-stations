@@ -1,0 +1,22 @@
+<h2>新しい上映スケジュールを追加</h2>
+
+<%= form_with model: [:admin, @movie, @schedule], local: true do |f| %>
+  <div class="field">
+    <%= f.label :movie_id, "映画ID" %>
+    <%= f.collection_select :movie_id, Movie.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time, "開始時間" %>
+    <%= f.time_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time, "終了時間" %>
+    <%= f.time_field :end_time %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "追加" %>
+  </div>
+<% end %>

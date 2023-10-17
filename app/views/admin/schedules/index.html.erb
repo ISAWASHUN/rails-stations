@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>映画名</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.movie.name %></td>
+        <td><%= schedule.start_time %></td>
+        <td><%= schedule.end_time %></td>
+        <td><%= schedule.created_at %></td>
+        <td><%= schedule.updated_at %></td>
+        <td>
+          <%= link_to '編集', edit_admin_movie_schedule_path(schedule.movie, schedule) %>
+          <%= link_to '削除', admin_movie_schedule_path(schedule.movie, schedule), method: :delete, data: {confirm: 'スケジュールを削除します。よろしいですか？'} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

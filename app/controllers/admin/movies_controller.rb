@@ -1,6 +1,6 @@
 class Admin::MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:schedules).all
   end
 
   def new

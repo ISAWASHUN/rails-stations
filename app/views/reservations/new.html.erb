@@ -1,0 +1,28 @@
+<% if @reservation.errors.any? %>
+  <div>
+    <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @reservation, url: reservations_path do |f| %>
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+  <%= f.hidden_field :schedule_id, value: @schedule.id %>
+  <%= f.hidden_field :sheet_id, value: @sheet.id %>
+  <%= f.hidden_field :date, value: params[:date] %>
+
+  <div>
+    <%= f.label :name, "予約者氏名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email, "予約者メールアドレス" %>
+    <%= f.email_field :email %>
+  </div>
+
+  <%= f.submit "予約する" %>
+<% end %>
