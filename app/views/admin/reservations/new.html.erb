@@ -1,0 +1,38 @@
+<h1>New Reservation</h1>
+
+<%= form_for [:admin, @reservation] do |f| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+      <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :schedule_id %><br>
+    <%= f.select :schedule_id, Schedule.all.collect { |s| [s.display_name, s.id] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sheet_id %><br>
+    <%= f.select :sheet_id, Sheet.all.collect { |s| [s.row, s.id] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

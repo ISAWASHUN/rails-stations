@@ -1,0 +1,25 @@
+<h1>Reservation Details</h1>
+
+<%= form_for [:admin, @reservation] do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :schedule_id %><br>
+    <%= f.select :schedule_id, Schedule.all.collect { |s| [s.movie.name, s.id] }, {}, { disabled: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sheet_id %><br>
+    <%= f.select :sheet_id, Sheet.all.collect { |s| [s.row, s.id] }, {}, { disabled: true } %>
+  </div>
+
+  <%= link_to 'Back', admin_reservations_path %>
+<% end %>

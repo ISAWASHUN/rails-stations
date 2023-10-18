@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :reservations, only: [:new, :create]
 
   namespace :admin do
+    resources :reservations
     resources :movies do
       resources :schedules
     end

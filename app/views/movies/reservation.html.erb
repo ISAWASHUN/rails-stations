@@ -3,9 +3,14 @@
 
 <table>
   <% @sheets.each do |sheet| %>
+    <% reserved = @reserved_sheet_ids&.include?(sheet.id) %>
     <tr>
-      <td>
-        <%= link_to sheet.column, new_reservation_movie_path(@movie, schedule_id: params[:schedule_id], sheet_id: sheet.id) %>
+      <td style="<%= 'background-color: gray;' if reserved %>">
+        <% if reserved %>
+          <%= sheet.column %>
+        <% else %>
+          <%= link_to sheet.column, new_reservation_movie_path(@movie, schedule_id: params[:schedule_id], sheet_id: sheet.id) %>
+        <% end %>
       </td>
     </tr>
   <% end %>

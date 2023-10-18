@@ -7,4 +7,5 @@ class Reservation < ApplicationRecord
 
   validates :email, presence: true, format: { with: EMAIL_REGEX }
   validates :name, presence: true
+  validates :sheet_id, uniqueness: { scope: :schedule_id, message: "is already reserved for this schedule" }
 end
